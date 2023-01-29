@@ -1,21 +1,22 @@
 package com.example.algorithm.dataStructure;
 
-class Node {
+class TreeNode {
     int data;
-    Node left;
-    Node right;
+    TreeNode left;
+    TreeNode right;
 }
+
 public class Tree {
-    public Node root;
-    public void setRoot(Node node) {
+    public TreeNode root;
+    public void setRoot(TreeNode node) {
         this.root = node;
     }
-    public Node getRoot() {
+    public TreeNode getRoot() {
         return root;
     }
 
-    public Node makeNode (int data, Node left, Node right) {
-        Node node = new Node();
+    public TreeNode makeNode (int data, TreeNode left, TreeNode right) {
+        TreeNode node = new TreeNode();
         node.data = data;
         node.left = left;
         node.right = right;
@@ -27,7 +28,7 @@ public class Tree {
      * @desc travel left, root, right
      * @param node
      */
-    public void inorder(Node node) {
+    public void inorder(TreeNode node) {
         if (node != null) {
             inorder(node.left);
             System.out.print(node.data + " ");
@@ -40,7 +41,7 @@ public class Tree {
      * @desc travel root, left, right
      * @param node
      */
-    public void preorder(Node node) {
+    public void preorder(TreeNode node) {
         if (node != null) {
             System.out.print(node.data + " ");
             preorder(node.left);
@@ -53,7 +54,7 @@ public class Tree {
      * @desc travel left, right, root
      * @param node
      */
-    public void postorder(Node node) {
+    public void postorder(TreeNode node) {
         if (node !=null) {
             postorder(node.left);
             postorder(node.right);
@@ -74,11 +75,11 @@ public class Tree {
      */
     public static void main(String[] args) {
         Tree tree = new Tree();
-        Node n4 = tree.makeNode(4, null, null);
-        Node n5 = tree.makeNode(5, null, null);
-        Node n2 = tree.makeNode(2, n4, n5);
-        Node n3 = tree.makeNode(3, null, null);
-        Node n1 = tree.makeNode(1, n2, n3);
+        TreeNode n4 = tree.makeNode(4, null, null);
+        TreeNode n5 = tree.makeNode(5, null, null);
+        TreeNode n2 = tree.makeNode(2, n4, n5);
+        TreeNode n3 = tree.makeNode(3, null, null);
+        TreeNode n1 = tree.makeNode(1, n2, n3);
         tree.setRoot(n1);
         tree.inorder(tree.getRoot());
         tree.preorder(tree.getRoot());

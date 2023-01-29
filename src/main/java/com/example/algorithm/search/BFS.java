@@ -1,12 +1,11 @@
 package com.example.algorithm.search;
 
-import com.example.algorithm.dataStructure.Graph;
 import com.example.algorithm.dataStructure.Node;
-import com.example.algorithm.dataStructure.Stack;
-
-public class DFS {
+import com.example.algorithm.dataStructure.Queue;
+import com.example.algorithm.dataStructure.Graph;
+public class BFS {
     public static void main(String[] args) {
-    /*
+     /*
          0
         /
         1 -- 3    7
@@ -27,40 +26,26 @@ public class DFS {
         graph.addEdge(5,7);
         graph.addEdge(6,8);
 
-        //dfs(graph.getNode(0));
-        dfsR(graph.getNode(0));
-
+        /*
+            0 1 2 3 4 5 6 7 8
+         */
+        bfs(graph.getNode(0));
     }
 
-    /*
-        0 1 3 5 7 6 8 4 2
-     */
-    public static void dfs(Node root) {
-        Stack<Node> stack = new Stack<>();
-        stack.push(root);
+
+    public static void bfs(Node root) {
+        Queue<Node> queue = new Queue<>();
+        queue.add(root);
         root.setMarked(true);
-        while (!stack.isEmpty()) {
-            Node r = stack.pop();
+        while(!queue.isEmpty()) {
+            Node r = queue.remove();
             for (Node n : r.getAdjacent()) {
                 if (n.isMarked() == false) {
                     n.setMarked(true);
-                    stack.push(n);
+                    queue.add(n);
                 }
             }
             System.out.print(r.getData() + " ");
-        }
-    }
-    /*
-         0 1 2 3 4 5 6 8 7
-     */
-    public static void dfsR(Node node) {
-        if (node == null) return;
-        node.setMarked(true);
-        System.out.println(node.getData());
-        for (Node n : node.getAdjacent()) {
-            if (n.isMarked() == false) {
-                dfsR(n);
-            }
         }
 
     }
